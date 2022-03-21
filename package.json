@@ -103,7 +103,7 @@
 	},
 	"scripts": {
 		"vscode:prepublish": "yarn run esbuild --minify",
-		"esbuild-view": "esbuild ./src/view/view.ts ./src/view/style.css --bundle --outdir=media --external:vscode",
+		"esbuild-view": "esbuild ./src/view/view.ts ./src/view/style.css --bundle --loader:.woff=file --loader:.woff2=file --loader:.ttf=file --outdir=media --external:vscode",
 		"esbuild-base": "esbuild ./src/extension.ts --bundle --outdir=out --external:vscode --format=cjs --platform=node",
 		"esbuild": "yarn run esbuild-base --sourcemap && yarn run esbuild-view --sourcemap",
 		"pretest": "yarn run esbuild && yarn run lint",

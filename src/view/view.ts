@@ -12,7 +12,11 @@ const vscode = acquireVsCodeApi();
 
 const plugins = [
     gfm(),
-    math(),
+    math({
+        katexOptions: {
+            output: 'html'
+        }
+    }),
     highlight(),
     frontmatter(),
     footnotes(),
