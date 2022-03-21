@@ -1,4 +1,5 @@
 @import 'bytemd/dist/index.min.css';
+@import 'github-markdown-css';
 
 .bytemd {
   height: auto

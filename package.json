@@ -4,6 +4,10 @@
 	"description": "markdown editor powered by Bytemd(unofficial)",
 	"version": "0.0.1",
 	"publisher": "fitenne",
+	"repository": {
+		"type": "git",
+    	"url": "https://github.com/fitenne/vscode-bytemd.git"
+	},
 	"engines": {
 		"vscode": "^1.65.0"
 	},
@@ -13,7 +17,7 @@
 	"activationEvents": [
 		"onCustomEditor:fitenne.bytemd",
 		"onLanguage:markdown",
-        "onCommand:bytemd.open"
+		"onCommand:bytemd.open"
 	],
 	"main": "./out/extension.js",
 	"contributes": {
@@ -30,26 +34,26 @@
 			}
 		],
 		"menus": {
-            "explorer/context": [
-                {
-                    "when": "resourceLangId == markdown",
-                    "command": "bytemd.open",
-                    "group": "navigation"
-                }
-            ],
-            "editor/context": [
-                {
-                    "when": "resourceLangId == markdown",
-                    "command": "bytemd.open",
-                    "group": "navigation"
-                }
-            ]
-        },
+			"explorer/context": [
+				{
+					"when": "resourceLangId == markdown",
+					"command": "bytemd.open",
+					"group": "navigation"
+				}
+			],
+			"editor/context": [
+				{
+					"when": "resourceLangId == markdown",
+					"command": "bytemd.open",
+					"group": "navigation"
+				}
+			]
+		},
 		"commands": [
 			{
 				"command": "bytemd.open",
 				"title": "Open with Bytemd",
-                "category": "Bytemd"
+				"category": "Bytemd"
 			}
 		],
 		"keybindings": [
@@ -122,6 +126,7 @@
 		"bytemd": "^1.11.0",
 		"esbuild": "^0.14.27",
 		"eslint": "^8.9.0",
+		"github-markdown-css": "^5.1.0",
 		"glob": "^7.2.0",
 		"mocha": "^9.2.1",
 		"typescript": "^4.5.5"
