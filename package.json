@@ -1,0 +1,129 @@
+{
+	"name": "bytemd",
+	"displayName": "bytemd",
+	"description": "markdown editor powered by Bytemd(unofficial)",
+	"version": "0.0.1",
+	"publisher": "fitenne",
+	"engines": {
+		"vscode": "^1.65.0"
+	},
+	"categories": [
+		"Other"
+	],
+	"activationEvents": [
+		"onCustomEditor:fitenne.bytemd",
+		"onLanguage:markdown",
+        "onCommand:bytemd.open"
+	],
+	"main": "./out/extension.js",
+	"contributes": {
+		"customEditors": [
+			{
+				"viewType": "fitenne.bytemd",
+				"displayName": "bytemd",
+				"selector": [
+					{
+						"filenamePattern": "*.md"
+					}
+				],
+				"priority": "option"
+			}
+		],
+		"menus": {
+            "explorer/context": [
+                {
+                    "when": "resourceLangId == markdown",
+                    "command": "bytemd.open",
+                    "group": "navigation"
+                }
+            ],
+            "editor/context": [
+                {
+                    "when": "resourceLangId == markdown",
+                    "command": "bytemd.open",
+                    "group": "navigation"
+                }
+            ]
+        },
+		"commands": [
+			{
+				"command": "bytemd.open",
+				"title": "Open with Bytemd",
+                "category": "Bytemd"
+			}
+		],
+		"keybindings": [
+			{
+				"key": "ctrl+b",
+				"mac": "cmd+b",
+				"command": "extension.bytemd.bold",
+				"when": "bytemd.active"
+			},
+			{
+				"key": "ctrl+i",
+				"mac": "cmd+i",
+				"command": "extension.bytemd.italic",
+				"when": "bytemd.active"
+			},
+			{
+				"key": "ctrl+k",
+				"mac": "cmd+k",
+				"command": "extension.bytemd.link",
+				"when": "bytemd.active"
+			},
+			{
+				"key": "ctrl+shift+k",
+				"mac": "cmd+shift+k",
+				"command": "extension.bytemd.code",
+				"when": "bytemd.active"
+			},
+			{
+				"key": "ctrl+shift+c",
+				"mac": "cmd+shift+c",
+				"command": "extension.bytemd.codeblock",
+				"when": "bytemd.active"
+			},
+			{
+				"key": "ctrl+shift+u",
+				"mac": "cmd+shift+u",
+				"command": "extension.bytemd.unorderedlist",
+				"when": "bytemd.active"
+			},
+			{
+				"key": "ctrl+shift+o",
+				"mac": "cmd+shift+o",
+				"command": "extension.bytemd.orderedlist",
+				"when": "bytemd.active"
+			}
+		]
+	},
+	"scripts": {
+		"vscode:prepublish": "yarn run esbuild --minify",
+		"esbuild-view": "esbuild ./src/view/view.ts ./src/view/style.css --bundle --outdir=media --external:vscode",
+		"esbuild-base": "esbuild ./src/extension.ts --bundle --outdir=out --external:vscode --format=cjs --platform=node",
+		"esbuild": "yarn run esbuild-base --sourcemap && yarn run esbuild-view --sourcemap",
+		"pretest": "yarn run esbuild && yarn run lint",
+		"lint": "eslint src --ext ts"
+	},
+	"devDependencies": {
+		"@bytemd/plugin-footnotes": "^1.11.0",
+		"@bytemd/plugin-frontmatter": "^1.11.0",
+		"@bytemd/plugin-gfm": "^1.11.0",
+		"@bytemd/plugin-highlight": "^1.11.0",
+		"@bytemd/plugin-math": "^1.11.0",
+		"@bytemd/plugin-mermaid": "^1.11.0",
+		"@types/glob": "^7.2.0",
+		"@types/mocha": "^9.1.0",
+		"@types/node": "14.x",
+		"@types/vscode": "^1.65.0",
+		"@typescript-eslint/eslint-plugin": "^5.12.1",
+		"@typescript-eslint/parser": "^5.12.1",
+		"@vscode/test-electron": "^2.1.2",
+		"bytemd": "^1.11.0",
+		"esbuild": "^0.14.27",
+		"eslint": "^8.9.0",
+		"glob": "^7.2.0",
+		"mocha": "^9.2.1",
+		"typescript": "^4.5.5"
+	}
+}

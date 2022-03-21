@@ -1,0 +1,10 @@
+@import 'bytemd/dist/index.min.css';
+
+.bytemd {
+  height: auto
+}
+
+/* hide fullscreen button. maybe cleaner selector? */
+.bytemd-toolbar-right [bytemd-tippy-path="4"] {
+  display: none;
+}
