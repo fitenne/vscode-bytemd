@@ -71,6 +71,18 @@ export class BytemdEditorProvider implements vscode.CustomTextEditorProvider {
             }
         });
 
+        // status restore
+        const changeWindowState = vscode.window.onDidChangeWindowState((e) => {
+            console.log(`DidChangeWindowState: ${e.focused}`);
+            webviewPanel.webview.postMessage({
+                type: 'status',
+                focused: e.focused
+            });
+        });
+        webviewPanel.onDidDispose(() => {
+            changeWindowState.dispose();
+        });
+        
         updateWebview();
     }
 

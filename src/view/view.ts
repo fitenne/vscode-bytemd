@@ -20,15 +20,18 @@ const plugins = [
 ];
 
 function main() {
+    const state = vscode.getState();
+
     const editor = new Editor({
         target: document.getElementById('app'),
         props: {
-            value: '',
+            value: state ? state.content : '',
             plugins,
         }
     });
     
     editor.$on('change', (e: any)=> {
+        vscode.setState({ content: e.detail.value });
         vscode.postMessage({
             type: 'client-update',
             content: e.detail.value,
